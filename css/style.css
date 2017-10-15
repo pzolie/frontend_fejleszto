@@ -115,10 +115,16 @@ body {
   color: aliceblue;
 }
 
+.events-card-deck {
+  margin-bottom: 15px;
+}
+
 /* events page */
 .events-card-deck .card {
   box-shadow: 0 0 2px;
   color: #212529;
+  position: relative;
+  padding: 0 0 10px 0;
 }
 
 .events-card-deck .card:hover {
