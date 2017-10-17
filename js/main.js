@@ -67,42 +67,42 @@ $(function(){
 var tickets = [
   {
     event: "Sziget Fesztivál",
-    time: "2018-08-03 18:00:00",
+    time: "2018-06-03 18:00:00",
     seller: "Kiss Márton",
-    pcs: 5,
+    pcs: 10,
     link: "licit/1"
   },  
   {
     event: "Diótörő",
-    time: "2018-08-03 18:00:00",
-    seller: "Kiss Márton",
+    time: "2018-10-03 18:00:00",
+    seller: "Tóth Pál",
     pcs: 5,
     link: "licit/1"
   },  
   {
     event: "MOMA Party",
-    time: "2018-08-03 18:00:00",
-    seller: "Kiss Márton",
-    pcs: 5,
+    time: "2017-08-03 18:00:00",
+    seller: "Ádám Éva",
+    pcs: 4,
     link: "licit/1"
   },  
   {
     event: "A kékszakállú herceg vára",
-    time: "2018-08-03 18:00:00",
-    seller: "Kiss Márton",
-    pcs: 5,
+    time: "2017-11-03 18:00:00",
+    seller: "Papp Zoltán",
+    pcs: 12,
     link: "licit/1"
   },  
   {
     event: "Balett mindenkinek",
-    time: "2018-08-03 18:00:00",
-    seller: "Kiss Márton",
-    pcs: 5,
+    time: "2018-08-10 18:00:00",
+    seller: "Nagy János",
+    pcs: 3,
     link: "licit/1"
   },  
   {
     event: "Macskák",
-    time: "2018-08-03 18:00:00",
+    time: "2018-12-11 18:00:00",
     seller: "Kiss Márton",
     pcs: 5,
     link: "licit/1"
@@ -149,3 +149,36 @@ function fillTicketsTable(currentTickets) {
   }
   fillTicketsTable(filteredTickets);
 } 
+
+// Jegyek táblázat rendezése
+ticketTable.find("thead th[data-key]").on("click", orderTicketTable);
+function orderTicketTable() {
+  var th = $(this);
+  $.each(ticketTable.find('thead th[data-key]'), function (index, elem){
+    var currentTh = $(elem);
+    if (th.data("key") != currentTh.data("key")) {
+      currentTh.removeClass("asc").removeClass("desc");
+    }
+  });
+  var key = th.data("key");
+  var sortedTickets = tickets.map(function(item) {
+    return item;
+  });
+
+  if(th.hasClass("asc")) {
+    th.removeClass("asc").addClass("desc");
+  } else {
+    th.removeClass("desc").addClass("asc");
+  }
+
+  sortedTickets.sort(function(a,b) {
+    if(th.hasClass("asc")) {
+      return a[key].toString().localeCompare(b[key].toString());
+    } else {
+      return b[key].toString().localeCompare(a[key].toString())
+    }
+  
+    
+  });
+  fillTicketsTable(sortedTickets)
+}
