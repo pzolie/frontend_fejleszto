@@ -49,12 +49,10 @@ $(".cherry-custom-file").on("change", function(ev){
     $(this).find(".file-name").html(name);
 })
 
-<<<<<<< HEAD
 // Ticket oldal
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });
-=======
 var alertBox =  $(".alert.alert-primary");
 function showInvalidMessage() {
  alertBox
@@ -188,4 +186,3 @@ function orderTicketTable() {
   });
   fillTicketsTable(sortedTickets)
 }
->>>>>>> 59f6b5fc0e6cda839423a47565f26d85ded2e009
