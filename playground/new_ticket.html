@@ -44,6 +44,10 @@
          <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 
+      <<div id="ticket-list">
+      <pre></pre>
+      </div>
+
     </div> <!-- /container -->
 
     <div class="container footer-container">
@@ -79,7 +83,37 @@
     // server url
         var RESTURL = "http://localhost:3000";
 
+        function disableInputs(inputs){
+            inputs.prop('disabled', true);
+        }
+
+        function enableInputs(inputs){
+            inputs.prop('disabled', false);
+        }
+
+        function showAlert(beforeElem, type, text) {
+            var formAlertId = 'form-alert';
+
+            $("#"+formAlertId).remove();
+
+            $('<div class="alert alert-'+type+'" id="'+formAlertId+'" role="alert">'+text+'</div>').insertBefore(beforeElem).fadeIn();
+            setTimeout(function() {
+                $("#"+formAlertId).fadeOut(function(){
+                    $(this).remove()
+                });
+            },3000);
+        }
+
+/*        function refreshTicketsList(){
+            $.getJSON(RESTURL+"/tickets?_sort=id$_order=desc").done(function(ticketList){
+                $("#ticketList > pre")[0].innerText = JSON.stringify(ticketList, null, 2);
+            });
+        } */
+
         $(document).ready(function() {
+
+//        refreshTicketsList();
+
             $("#new-ticket-form").submit(function(event){
                 event.preventDefault(); //megállítottuk a böngésző beállított submit eseményt
 
@@ -95,14 +129,28 @@
                     var serializedFormArray = newTicketFormElem.serializeArray;
                     var data = {};
                     $(serializedFormArray).each(function(index,elem) {
-                        data[elem["name"]] = elem["value"];
+                        data[elem['name']] = elem['value'];
                     });
+
+                    var inputs = $('input',newTicketFormElem);
+                    disableInputs(inputs);
+
                     $.ajax({
                         type: "POST",
                         url: RESTURL + "/tickets",
                         "data": data,
-                        dataType: "json"
-                    })
+                        dataType: 'json'
+                    }).done(function(returnData){
+                        newTicketFormElem.removeClass("was-validated");
+                        newTicketFormNativeElem.reset();
+                        enableInputs(inputs);
+                        showAlert(newTicketFormElem, 'success', 'Sikeres mentés');
+//                        refreshTicketsList();
+                    }).fail(function(){
+                        alert("Hiba a server eléréshez");
+                        enableInputs(inputs);
+                        showAlert(newTicketFormElem, 'warning', 'Hiba a serveren');
+                    });
                 }
                 if(newTicketFormElem.hasClass("was-validated") == false)
                 {
