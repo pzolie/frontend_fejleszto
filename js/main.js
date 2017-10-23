@@ -47,3 +47,8 @@ $(".cherry-custom-filr").on("change", function(ev){
     var name = ev.target.value.split("\\").pop();
     $(this).find(".file-name").html(name);
 })
+
+// Ticket oldal
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
