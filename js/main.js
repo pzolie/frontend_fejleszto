@@ -62,58 +62,12 @@ function showInvalidMessage() {
  .text("Sikertelen belépés");
 }
 
-// ticket oldal
 $(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
 
-// Jegyek tömbje
-var tickets = [
-  {
-    event: "Sziget Fesztivál",
-    time: "2018-06-03 18:00:00",
-    seller: "Kiss Márton",
-    pcs: 10,
-    link: "licit/1"
-  },  
-  {
-    event: "Diótörő",
-    time: "2018-10-03 18:00:00",
-    seller: "Tóth Pál",
-    pcs: 5,
-    link: "licit/1"
-  },  
-  {
-    event: "MOMA Party",
-    time: "2017-08-03 18:00:00",
-    seller: "Ádám Éva",
-    pcs: 4,
-    link: "licit/1"
-  },  
-  {
-    event: "A kékszakállú herceg vára",
-    time: "2017-11-03 18:00:00",
-    seller: "Papp Zoltán",
-    pcs: 12,
-    link: "licit/1"
-  },  
-  {
-    event: "Balett mindenkinek",
-    time: "2018-08-10 18:00:00",
-    seller: "Nagy János",
-    pcs: 3,
-    link: "licit/1"
-  },  
-  {
-    event: "Macskák",
-    time: "2018-12-11 18:00:00",
-    seller: "Kiss Márton",
-    pcs: 5,
-    link: "licit/1"
-  }  
-];
 
-// Jegyek táblájának generálása
+/* Jegyek táblájának generálása
 var ticketTable = $("table.table.table-striped").eq(0);
 function fillTicketsTable(currentTickets) {
   currentTickets = currentTickets || tickets;
@@ -131,8 +85,9 @@ function fillTicketsTable(currentTickets) {
   });
 }
 
- fillTicketsTable();
+ fillTicketsTable();  */
 
+ /*
  // Jegyek táblázat szűrése
  $(".tickets-search-row input").on("keyup", filterTickets); 
  function filterTickets() {
@@ -184,5 +139,5 @@ function orderTicketTable() {
   
     
   });
-  fillTicketsTable(sortedTickets)
-}
+  fillTicketsTable(sortedTickets) 
+}*/
