@@ -44,7 +44,7 @@
          <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 
-      <<div id="ticket-list">
+      <div id="ticket-list">
       <pre></pre>
       </div>
 
@@ -104,15 +104,24 @@
             },3000);
         }
 
-/*        function refreshTicketsList(){
-            $.getJSON(RESTURL+"/tickets?_sort=id$_order=desc").done(function(ticketList){
-                $("#ticketList > pre")[0].innerText = JSON.stringify(ticketList, null, 2);
+        function refreshTicketsList(){
+            $.getJSON(RESTURL+"/tickets?_sort=id&_order=desc").done(function(ticketList){
+                $('#ticket-list > pre')[0].innerText = JSON.stringify(ticketList, null, 2);
             });
-        } */
+        } 
+
+/*            function refreshTicketsList() {
+            $.getJSON(RESTURL + "/tickets?_sort=id&_order=desc").done(
+                function (ticketList) {
+                    $('#ticket-list > pre')[0].innerText = JSON.stringify(ticketList, null, 2);
+                }
+                );
+            } */
+ 
 
         $(document).ready(function() {
 
-//        refreshTicketsList();
+        refreshTicketsList();
 
             $("#new-ticket-form").submit(function(event){
                 event.preventDefault(); //megállítottuk a böngésző beállított submit eseményt
@@ -126,7 +135,7 @@
                 if (newTicketFormNativeElem.checkValidity() == true)
                 {
                     //valid az űrlapom
-                    var serializedFormArray = newTicketFormElem.serializeArray;
+                    var serializedFormArray = newTicketFormElem.serializeArray();
                     var data = {};
                     $(serializedFormArray).each(function(index,elem) {
                         data[elem['name']] = elem['value'];
@@ -145,7 +154,7 @@
                         newTicketFormNativeElem.reset();
                         enableInputs(inputs);
                         showAlert(newTicketFormElem, 'success', 'Sikeres mentés');
-//                        refreshTicketsList();
+                        refreshTicketsList();
                     }).fail(function(){
                         alert("Hiba a server eléréshez");
                         enableInputs(inputs);
