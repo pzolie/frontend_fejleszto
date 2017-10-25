@@ -33,6 +33,8 @@ $(document).ready(function(){
     function refreshTicketList(){
         var urlParams = [];
         var url = RESTURL + "/tickets";
+        var reg = /\?.*event\=([0-9]*)/;
+        var eventId = 0;
 
         // lapozó adatok kezelése
         urlParams.push('_limit=' + pageLimit);
@@ -49,6 +51,9 @@ $(document).ready(function(){
             urlParams.push('_order=' + sortDirection);
 
         }
+        eventId = window.location.toString().match(reg)[1]; 
+        urlParams.push('eventId = ' + eventId);
+
         $("#ticket-list-paginator > ul > li").on('click', function(){
             currentPage = $(this).text();
          }); 

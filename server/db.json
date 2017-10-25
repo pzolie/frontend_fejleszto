@@ -3,30 +3,9 @@
     {
       "id": 1,
       "title": "Sziget Fesztivál",
-      "description": "Látogass el a 25 éves Szigetre és bulizz a legjobb arcokkal",
+      "description": "This is a longer card with supporting text below as a natural lead-in to additional content.",
       "time": "2018-08-03",
       "image": "img/sziget.png"
-    },
-    {
-      "id": 2,
-      "title": "Diótörő Balett",
-      "description": "Nézd meg a grandiőzus balett előadást most elővételben",
-      "time": "2018-08-03",
-      "image": "img/diotoro.jpg"
-    },
-    {
-      "title": "Efott",
-      "time": "2017-10-31",
-      "image": "img/sziget.png",
-      "description": "A logjobb buli.",
-      "id": 3
-    },
-    {
-      "title": "Macskák Musical",
-      "time": "2018-02-22",
-      "image": "img/macskak.jpg",
-      "description": "A világ leghíresebb Musicelje a legjobb előadóktól.",
-      "id": 4
     }
   ],
   "tickets": [
