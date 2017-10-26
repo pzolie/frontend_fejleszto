@@ -69,6 +69,35 @@ $(function(){
 // jQuery plugin for send data
 
 $.fn.sendForm = function() {
+  var form = $(this);
+  var action = form.attr("action");
+  var method = form.attr("method") || "post";
+  var callBack = form.attr("callBack");
+
+  form.on("submit", function(ev) {
+    ev.preventDefault();
+    var formData = {};
+    $(this).find("input, select").each( function(index, input) {
+      formData[input.name] = input.value;
+    });
+    $.ajax({
+      type: method.toUpperCase(),
+      url: action,
+      data: formData,
+      dataType: 'json'
+    }).done( function(resp) {
+      console.log(resp);
+      if (window[callBack]) {
+        window[callBack]();
+      }
+    });
+  });
+
+  return this;
+};
+
+
+/* $.fn.sendForm = function() {
   var form = $(this); // azonosítjuk az űrlapot
   var action = form.attr("action"); // kiveszi az űrlap action attribútumát és oda küldi az adatokat
   var method = form.attr("method") || "post"; // kiveszi az űrlap method attribútumát a feldolgozáshoz. Alapértelmezetten post
@@ -82,7 +111,7 @@ $.fn.sendForm = function() {
 //          console.log(formData);
         });
         $.ajax({
-            type: MSInputMethodContext.toUppeCase(),
+            type: method.toUppeCase(),
             url: action,
             data: formData,
             dataType: 'json'
@@ -92,12 +121,13 @@ $.fn.sendForm = function() {
             window[callBack]();
           }
         });
+      });
         
         
  //       (action,formDate).done(function(resp){ // elküldi az összeszedett adatokat
       });
   return this; // chaining miatt kell ez a sor a végére, hogy visszaadja a meghívott elemet
-}
+} */
 
 $("#newEventForm").sendForm();
 
