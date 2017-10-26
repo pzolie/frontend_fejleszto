@@ -6,6 +6,13 @@
       "description": "This is a longer card with supporting text below as a natural lead-in to additional content.",
       "time": "2018-08-03",
       "image": "img/sziget.png"
+    },
+    {
+      "title": "Efot",
+      "time": "2017-10-26",
+      "image": "",
+      "description": "",
+      "id": 2
     }
   ],
   "tickets": [

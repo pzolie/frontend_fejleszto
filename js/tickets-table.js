@@ -220,5 +220,27 @@ $(document).ready(function(){
     // innen indult az alkalmazás
     refreshTicketList();
 
+    ticketListTable.on("ticketDataChanged", function(){
+        refreshTicketList();
+    });
+
 
 });
+
+// jegylista frissítése
+function refreshTicketList() {
+    $("#ticket-list").trigger("ticketDataChanged");
+}
+$.getJSON("http://localhost:3000/events").done(function(events){
+    $.each(events, function(index,event){
+        var select $("#eventId");
+        var option = $("<option />");
+        option.val(event.id);
+        option.text(event.title);
+        select.append(option);
+    });
+});
+
+$("#eventId").
+
+$("#newEventForm").sendForm();

@@ -66,6 +66,40 @@ $(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
 
+// jQuery plugin for send data
+
+$.fn.sendForm = function() {
+  var form = $(this); // azonosítjuk az űrlapot
+  var action = form.attr("action"); // kiveszi az űrlap action attribútumát és oda küldi az adatokat
+  var method = form.attr("method") || "post"; // kiveszi az űrlap method attribútumát a feldolgozáshoz. Alapértelmezetten post
+  var callBack = form.attr("callBack");
+
+  $(this).on('submit', function(event){ // figyeli a submit eseményt
+      event.preventDefault(); // megállítja az alap küldést
+      var formData = {}; // összesezdi az adatokat egy tömbbe
+      $(this).find("input, select").each(function(index, input){
+          formData[input.name] = input.value;
+//          console.log(formData);
+        });
+        $.ajax({
+            type: MSInputMethodContext.toUppeCase(),
+            url: action,
+            data: formData,
+            dataType: 'json'
+        }).done(function(resp){
+          console.log(resp);
+          if (window[callBack]) {
+            window[callBack]();
+          }
+        });
+        
+        
+ //       (action,formDate).done(function(resp){ // elküldi az összeszedett adatokat
+      });
+  return this; // chaining miatt kell ez a sor a végére, hogy visszaadja a meghívott elemet
+}
+
+$("#newEventForm").sendForm();
 
 /* Jegyek táblájának generálása
 var ticketTable = $("table.table.table-striped").eq(0);
